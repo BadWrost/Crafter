@@ -20,9 +20,11 @@ def read_pkl(path):
 
 def read_crafter_logs(indir, clip=True):
     indir = pathlib.Path(indir)
+    print(f"Reading logs from {indir}")
     # read the pickles
     filenames = sorted(list(indir.glob("**/*/eval_stats.pkl")))
     runs = []
+    print(f"Found {len(filenames)} runs.")
     for idx, fn in enumerate(filenames):
         df = pd.DataFrame(columns=["step", "avg_return"], data=read_pkl(fn))
         df["run"] = idx
@@ -46,7 +48,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--logdir",
-        default="logdir/random_agent",
+        default="../logdir/random_agent",
         help="Path to the folder containing different runs.",
     )
     cfg = parser.parse_args()

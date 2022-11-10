@@ -85,7 +85,6 @@ class ResizeImage:
         return obs
 
     def _resize(self, image):
-        print(image.shape)
         image = Image.fromarray(image)
         image = image.resize((self._size, self._size), Image.NEAREST)
         image = np.array(image)
